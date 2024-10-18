@@ -1,0 +1,328 @@
+about:
+  date: October 18, 2024 17:40:34
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 11
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Shell:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: collection_time_id
+    - name: color_id
+    - name: conservation_status_id
+    - name: historical_use_id
+    - name: location_id
+    - name: size_id
+    - name: species_id
+    - name: discovery_date
+    description: A comprehensive table combining all attributes of the top ten classic
+      Texas seashells.
+    info_list: A comprehensive table combining all attributes of the top ten classic
+      Texas seashells.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - shell_id
+      name: ShellCollectionRecordList
+      resource: ShellCollectionRecord
+    - direction: tomany
+      fks:
+      - shell_id
+      name: ShellPhotoList
+      resource: ShellPhoto
+    - direction: tomany
+      fks:
+      - shell_id
+      name: ShellScientificStudyList
+      resource: ShellScientificStudy
+    - direction: toone
+      fks:
+      - collection_time_id
+      name: collection_time
+      resource: ShellCollectionTime
+    - direction: toone
+      fks:
+      - color_id
+      name: color
+      resource: ShellColor
+    - direction: toone
+      fks:
+      - conservation_status_id
+      name: conservation_status
+      resource: ShellConservationStatu
+    - direction: toone
+      fks:
+      - historical_use_id
+      name: historical_use
+      resource: ShellHistoricalUse
+    - direction: toone
+      fks:
+      - location_id
+      name: location
+      resource: ShellLocation
+    - direction: toone
+      fks:
+      - size_id
+      name: size
+      resource: ShellSize
+    - direction: toone
+      fks:
+      - species_id
+      name: species
+      resource: ShellSpecy
+    type: Shell
+    user_key: id
+  ShellCollectionRecord:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: collector_id
+    - name: shell_id
+    - name: collection_date
+    description: Records of collected shells including collector and date.
+    info_list: Records of collected shells including collector and date.
+    tab_groups:
+    - direction: toone
+      fks:
+      - collector_id
+      name: collector
+      resource: ShellCollector
+    - direction: toone
+      fks:
+      - shell_id
+      name: shell
+      resource: Shell
+    type: ShellCollectionRecord
+    user_key: id
+  ShellCollectionTime:
+    attributes:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+    - name: season
+      required: true
+    - name: id
+    description: Reference for ideal times during the year to collect the shells.
+    info_list: Reference for ideal times during the year to collect the shells.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - collection_time_id
+      name: ShellList
+      resource: Shell
+    type: ShellCollectionTime
+    user_key: description
+  ShellCollector:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: contact_info
+    - name: id
+    description: Information about individuals or entities that collect seashells.
+    info_list: Information about individuals or entities that collect seashells.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - collector_id
+      name: ShellCollectionRecordList
+      resource: ShellCollectionRecord
+    type: ShellCollector
+    user_key: name
+  ShellColor:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: color
+      required: true
+    description: Represents the range of colors that Texas seashells can have.
+    info_list: Represents the range of colors that Texas seashells can have.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - color_id
+      name: ShellList
+      resource: Shell
+    type: ShellColor
+    user_key: id
+  ShellConservationStatu:
+    attributes:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+    - name: status
+      required: true
+    - name: id
+    description: Indicates the conservation status of various seashell species.
+    info_list: Indicates the conservation status of various seashell species.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - conservation_status_id
+      name: ShellList
+      resource: Shell
+    type: ShellConservationStatu
+    user_key: description
+  ShellHistoricalUse:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: usage
+      required: true
+    - name: historical_period
+    description: Captures the historical and cultural significance of seashells.
+    info_list: Captures the historical and cultural significance of seashells.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - historical_use_id
+      name: ShellList
+      resource: Shell
+    type: ShellHistoricalUse
+    user_key: id
+  ShellLocation:
+    attributes:
+    - label: ' name*'
+      name: name
+      required: true
+      search: true
+      sort: true
+    - name: description
+    - name: id
+    description: Details various Texas locations where seashells are commonly found.
+    info_list: Details various Texas locations where seashells are commonly found.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - location_id
+      name: ShellList
+      resource: Shell
+    type: ShellLocation
+    user_key: name
+  ShellPhoto:
+    attributes:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+    - name: shell_id
+    - name: url
+    - name: id
+    description: Stores photos of the seashells for documentation.
+    info_list: Stores photos of the seashells for documentation.
+    tab_groups:
+    - direction: toone
+      fks:
+      - shell_id
+      name: shell
+      resource: Shell
+    type: ShellPhoto
+    user_key: description
+  ShellScientificStudy:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: shell_id
+    - name: title
+    - name: research_date
+    - name: summary
+    description: Details scientific studies conducted on seashells.
+    info_list: Details scientific studies conducted on seashells.
+    tab_groups:
+    - direction: toone
+      fks:
+      - shell_id
+      name: shell
+      resource: Shell
+    type: ShellScientificStudy
+    user_key: id
+  ShellSize:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: category
+    - name: min_size
+    - name: max_size
+    description: Categorizes shells by size with associated ranges in centimeters.
+    info_list: Categorizes shells by size with associated ranges in centimeters.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - size_id
+      name: ShellList
+      resource: Shell
+    type: ShellSize
+    user_key: id
+  ShellSpecy:
+    attributes:
+    - label: ' common_name*'
+      name: common_name
+      required: true
+      search: true
+      sort: true
+    - name: scientific_name
+      required: true
+    - name: description
+    - name: id
+    description: Stores information about different species of seashells found in
+      Texas.
+    info_list: Stores information about different species of seashells found in Texas.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - species_id
+      name: ShellList
+      resource: Shell
+    type: ShellSpecy
+    user_key: common_name
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

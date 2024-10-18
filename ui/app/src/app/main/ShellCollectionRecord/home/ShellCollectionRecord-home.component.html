@@ -1,0 +1,51 @@
+<o-form-layout-manager attr="ShellCollectionRecord" mode="tab" title="SHELLCOLLECTIONRECORD">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="ShellCollectionRecordTable" 
+            service="ShellCollectionRecord" 
+            entity="ShellCollectionRecord" 
+            title="SHELLCOLLECTIONRECORD"
+            keys="id"
+            columns="id;collector_id;shell_id;collection_date" 
+            header-actions="R;D"
+            visible-columns="id;collector_id;shell_id;collection_date"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="collector_id" title="collector_id">
+    <o-table-cell-renderer-service attr="collector_id" 
+        service="ShellCollector" entity="ShellCollectorType" columns="id;name"
+        parent-keys="id:collector_id"
+        value-column="name" keys="collector_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="shell_id" title="shell_id">
+    <o-table-cell-renderer-service attr="shell_id" 
+        service="Shell" entity="ShellType" columns="id;id"
+        parent-keys="id:shell_id"
+        value-column="id" keys="shell_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-date-input #collection_date attr="collection_date" type="timestamp" label="collection_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

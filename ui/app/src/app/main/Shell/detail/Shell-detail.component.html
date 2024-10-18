@@ -1,0 +1,316 @@
+<div class="container">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="id" breadcrumb-separator=", " class="fill-form">
+      <o-form #form attr="Shell_form_edit" 
+        service="Shell" 
+        entity="Shell" 
+        fxLayout="column" 
+        show-header="yes" 
+        header-actions="R;I;U;D"
+        #oDetailForm keys="id" 
+        keys-sql-types="INTEGER" 
+        show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
+
+  <o-row attr="row1" layout-align="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+      
+      <o-integer-input #id attr="id" label=" id*" type="integer" editable="no" required="no" ></o-integer-input>
+      
+      <o-list-picker 
+        attr="collection_time_id"
+        service="ShellCollectionTime" 
+        entity="ShellCollectionTimeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;collection_time_id;description" 
+        title="collection_time_id"
+        visible-columns="id;description" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="color_id"
+        service="ShellColor" 
+        entity="ShellColorType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;color_id;id" 
+        title="color_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="conservation_status_id"
+        service="ShellConservationStatu" 
+        entity="ShellConservationStatuType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;conservation_status_id;description" 
+        title="conservation_status_id"
+        visible-columns="id;description" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="historical_use_id"
+        service="ShellHistoricalUse" 
+        entity="ShellHistoricalUseType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;historical_use_id;id" 
+        title="historical_use_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="location_id"
+        service="ShellLocation" 
+        entity="ShellLocationType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;location_id;name" 
+        title="location_id"
+        visible-columns="id;name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="size_id"
+        service="ShellSize" 
+        entity="ShellSizeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;size_id;id" 
+        title="size_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-list-picker 
+        attr="species_id"
+        service="ShellSpecy" 
+        entity="ShellSpecyType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;species_id;common_name" 
+        title="species_id"
+        visible-columns="id;common_name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+      <o-date-input #discovery_date attr="discovery_date" type="timestamp" label="discovery_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+    </div>
+  </o-row>
+      
+      <mat-tab-group fxFill>
+        
+        <mat-tab label="SHELLCOLLECTIONRECORD-shell_id">
+    <div layout-padding>
+      <o-table 
+        attr="ShellCollectionRecordTable" 
+        service="ShellCollectionRecord" 
+        entity="ShellCollectionRecord" 
+        keys="id"
+        parent-keys="shell_id:id"
+        columns="id;collector_id;shell_id;collection_date"  
+        horizontal-scroll="yes"
+        detail-form-route="ShellCollectionRecord" 
+        edit-form-route="ShellCollectionRecord"
+        visible-columns="id;collector_id;shell_id;collection_date"  
+        sort-columns="id" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="collector_id" title="collector_id">
+    <o-table-cell-renderer-service attr="collector_id" 
+        service="ShellCollector" entity="ShellCollectorType" columns="id;name"
+        parent-keys="id:collector_id"
+        value-column="name" keys="collector_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="shell_id" title="shell_id">
+    <o-table-cell-renderer-service attr="shell_id" 
+        service="Shell" entity="ShellType" columns="id;id"
+        parent-keys="id:shell_id"
+        value-column="id" keys="shell_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-date-input #collection_date attr="collection_date" type="timestamp" label="collection_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+        <mat-tab label="SHELLPHOTO-shell_id">
+    <div layout-padding>
+      <o-table 
+        attr="ShellPhotoTable" 
+        service="ShellPhoto" 
+        entity="ShellPhoto" 
+        keys="id"
+        parent-keys="shell_id:id"
+        columns="description;shell_id;url;id"  
+        horizontal-scroll="yes"
+        detail-form-route="ShellPhoto" 
+        edit-form-route="ShellPhoto"
+        visible-columns="description;shell_id;url;id"  
+        sort-columns="description" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #description attr="description" title=" description*" editable="no" required="no" content-align="left"></o-table-column>
+        
+          <o-table-column attr="shell_id" title="shell_id">
+    <o-table-cell-renderer-service attr="shell_id" 
+        service="Shell" entity="ShellType" columns="id;id"
+        parent-keys="id:shell_id"
+        value-column="id" keys="shell_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column #url attr="url" title="url" editable="no" required="no" content-align="left"></o-table-column>
+        
+          <o-table-column #id attr="id" title="id" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+        <mat-tab label="SHELLSCIENTIFICSTUDY-shell_id">
+    <div layout-padding>
+      <o-table 
+        attr="ShellScientificStudyTable" 
+        service="ShellScientificStudy" 
+        entity="ShellScientificStudy" 
+        keys="id"
+        parent-keys="shell_id:id"
+        columns="id;shell_id;title;research_date;summary"  
+        horizontal-scroll="yes"
+        detail-form-route="ShellScientificStudy" 
+        edit-form-route="ShellScientificStudy"
+        visible-columns="id;shell_id;title;research_date;summary"  
+        sort-columns="id" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="shell_id" title="shell_id">
+    <o-table-cell-renderer-service attr="shell_id" 
+        service="Shell" entity="ShellType" columns="id;id"
+        parent-keys="id:shell_id"
+        value-column="id" keys="shell_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column #title attr="title" title="title" editable="no" required="no" content-align="left"></o-table-column>
+        
+          <o-date-input #research_date attr="research_date" type="timestamp" label="research_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+        
+          <o-table-column #summary attr="summary" title="summary" editable="no" required="no" content-align="left"></o-table-column>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+      </mat-tab-group>
+      
+    </o-form>
+  </o-form-container>
+</div>

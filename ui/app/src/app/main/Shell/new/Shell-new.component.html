@@ -1,0 +1,151 @@
+<o-form #ShellForm attr="Shell_form_insert" service="Shell" entity="Shell" 
+keys="id" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container" (onInsertMode)="onInsertMode()">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-integer-input #id attr="id" label=" id*" type="integer" editable="no" required="no" ></o-integer-input>
+      
+        <o-list-picker 
+        attr="collection_time_id"
+        service="ShellCollectionTime" 
+        entity="ShellCollectionTimeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;collection_time_id;description" 
+        title="collection_time_id"
+        visible-columns="id;description" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="color_id"
+        service="ShellColor" 
+        entity="ShellColorType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;color_id;id" 
+        title="color_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="conservation_status_id"
+        service="ShellConservationStatu" 
+        entity="ShellConservationStatuType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;conservation_status_id;description" 
+        title="conservation_status_id"
+        visible-columns="id;description" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="historical_use_id"
+        service="ShellHistoricalUse" 
+        entity="ShellHistoricalUseType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;historical_use_id;id" 
+        title="historical_use_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="location_id"
+        service="ShellLocation" 
+        entity="ShellLocationType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;location_id;name" 
+        title="location_id"
+        visible-columns="id;name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="size_id"
+        service="ShellSize" 
+        entity="ShellSizeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;size_id;id" 
+        title="size_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="species_id"
+        service="ShellSpecy" 
+        entity="ShellSpecyType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;species_id;common_name" 
+        title="species_id"
+        visible-columns="id;common_name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-date-input #discovery_date attr="discovery_date" type="timestamp" label="discovery_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>

@@ -1,0 +1,96 @@
+<o-form-layout-manager attr="Shell" mode="tab" title="SHELL">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="ShellTable" 
+            service="Shell" 
+            entity="Shell" 
+            title="SHELL"
+            keys="id"
+            columns="id;collection_time_id;color_id;conservation_status_id;historical_use_id;location_id;size_id;species_id;discovery_date" 
+            header-actions="R;D"
+            visible-columns="id;collection_time_id;color_id;conservation_status_id;historical_use_id;location_id;size_id;species_id;discovery_date"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="collection_time_id" title="collection_time_id">
+    <o-table-cell-renderer-service attr="collection_time_id" 
+        service="ShellCollectionTime" entity="ShellCollectionTimeType" columns="id;description"
+        parent-keys="id:collection_time_id"
+        value-column="description" keys="collection_time_id"
+        visible-columns="description" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="color_id" title="color_id">
+    <o-table-cell-renderer-service attr="color_id" 
+        service="ShellColor" entity="ShellColorType" columns="id;id"
+        parent-keys="id:color_id"
+        value-column="id" keys="color_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="conservation_status_id" title="conservation_status_id">
+    <o-table-cell-renderer-service attr="conservation_status_id" 
+        service="ShellConservationStatu" entity="ShellConservationStatuType" columns="id;description"
+        parent-keys="id:conservation_status_id"
+        value-column="description" keys="conservation_status_id"
+        visible-columns="description" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="historical_use_id" title="historical_use_id">
+    <o-table-cell-renderer-service attr="historical_use_id" 
+        service="ShellHistoricalUse" entity="ShellHistoricalUseType" columns="id;id"
+        parent-keys="id:historical_use_id"
+        value-column="id" keys="historical_use_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="location_id" title="location_id">
+    <o-table-cell-renderer-service attr="location_id" 
+        service="ShellLocation" entity="ShellLocationType" columns="id;name"
+        parent-keys="id:location_id"
+        value-column="name" keys="location_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="size_id" title="size_id">
+    <o-table-cell-renderer-service attr="size_id" 
+        service="ShellSize" entity="ShellSizeType" columns="id;id"
+        parent-keys="id:size_id"
+        value-column="id" keys="size_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="species_id" title="species_id">
+    <o-table-cell-renderer-service attr="species_id" 
+        service="ShellSpecy" entity="ShellSpecyType" columns="id;common_name"
+        parent-keys="id:species_id"
+        value-column="common_name" keys="species_id"
+        visible-columns="common_name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-date-input #discovery_date attr="discovery_date" type="timestamp" label="discovery_date" editable="no" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

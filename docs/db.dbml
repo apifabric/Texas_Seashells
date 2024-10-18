@@ -1,0 +1,100 @@
+// Copy this text, paste to https://dbdiagram.io/d
+// Or, https://databasediagram.com/app
+
+Table Shell {
+    id INTEGER [primary key]
+    species_id INTEGER 
+    size_id INTEGER 
+    color_id INTEGER 
+    location_id INTEGER 
+    collection_time_id INTEGER 
+    historical_use_id INTEGER 
+    conservation_status_id INTEGER 
+    discovery_date DATETIME 
+    }
+
+Table ShellCollectionTime {
+    id INTEGER [primary key]
+    season VARCHAR 
+    description TEXT 
+    }
+
+Table ShellColor {
+    id INTEGER [primary key]
+    color VARCHAR 
+    }
+
+Table ShellConservationStatu {
+    id INTEGER [primary key]
+    status VARCHAR 
+    description TEXT 
+    }
+
+Table ShellHistoricalUse {
+    id INTEGER [primary key]
+    usage VARCHAR 
+    historical_period VARCHAR 
+    }
+
+Table ShellLocation {
+    id INTEGER [primary key]
+    name VARCHAR 
+    description TEXT 
+    }
+
+Table ShellSize {
+    id INTEGER [primary key]
+    category VARCHAR 
+    min_size FLOAT 
+    max_size FLOAT 
+    }
+
+Table ShellSpecy {
+    id INTEGER [primary key]
+    common_name VARCHAR 
+    scientific_name VARCHAR 
+    description TEXT 
+    }
+
+Table ShellCollectionRecord {
+    id INTEGER [primary key]
+    shell_id INTEGER 
+    collector_id INTEGER 
+    collection_date DATETIME 
+    }
+
+Table ShellCollector {
+    id INTEGER [primary key]
+    name VARCHAR 
+    contact_info VARCHAR 
+    }
+
+Table ShellPhoto {
+    id INTEGER [primary key]
+    shell_id INTEGER 
+    url VARCHAR 
+    description TEXT 
+    }
+
+Table ShellScientificStudy {
+    id INTEGER [primary key]
+    title VARCHAR 
+    research_date DATETIME 
+    shell_id INTEGER 
+    summary TEXT 
+    }
+
+
+
+// Relationships
+    Ref: Shell.(collection_time_id) < ShellCollectionTime.(id)
+    Ref: Shell.(color_id) < ShellColor.(id)
+    Ref: Shell.(conservation_status_id) < ShellConservationStatu.(id)
+    Ref: Shell.(historical_use_id) < ShellHistoricalUse.(id)
+    Ref: Shell.(location_id) < ShellLocation.(id)
+    Ref: Shell.(size_id) < ShellSize.(id)
+    Ref: Shell.(species_id) < ShellSpecy.(id)
+    Ref: ShellCollectionRecord.(collector_id) < ShellCollector.(id)
+    Ref: ShellCollectionRecord.(shell_id) < Shell.(id)
+    Ref: ShellPhoto.(shell_id) < Shell.(id)
+    Ref: ShellScientificStudy.(shell_id) < Shell.(id)
